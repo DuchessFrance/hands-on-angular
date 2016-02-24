@@ -9,7 +9,7 @@ var path = require('path');
 var server = new Hapi.Server();
 
 server.connection({
-  port: 3000,
+  port: 9000,
 });
 
 require('./server/summary')(server);

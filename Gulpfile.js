@@ -7,8 +7,11 @@ var stylish = require('gulp-jscs-stylish');
 var concat = require('gulp-concat');
 var nodemon = require('gulp-nodemon');
 var ngAnnotate = require('gulp-ng-annotate');
+var protractor = require('gulp-protractor').protractor;
+var webdriverStandalone = require('gulp-protractor').webdriver_standalone;
+var webdriverUpdate = require('gulp-protractor').webdriver_update;
 
-gulp.task('build-js', ['codestyle', 'test'], function () {
+gulp.task('build-js', ['codestyle'], function () {
   return gulp.src('client/**/!(*.spec).js')
     .pipe(ngAnnotate())
     .pipe(concat('app.js'))
@@ -39,18 +42,27 @@ gulp.task('build-static', function () {
 
 gulp.task('build-app', ['build-js', 'build-static']);
 gulp.task('build', ['build-lib', 'build-app']);
-gulp.task('default', ['codestyle', 'test', 'build', 'start']);
+gulp.task('default', ['codestyle', 'build', 'start']);
 
 gulp.task('start', ['build'], function() {
-  gulp.watch('client/**/*', ['codestyle', 'test', 'build-app']);
+  gulp.watch('client/**/*', ['codestyle', 'build-app']);
   return nodemon({
     script: 'index.js',
     ext: 'js',
   });
 });
 
-gulp.task('test', function() {
+gulp.task('test', ['webdriverUpdate'], function() {
+  return gulp.src(['client/**/*.spec.js', 'tests/**/*.js'], { read: false })
+    .pipe(protractor({
+      configFile: 'tests/protractor.config.js',
+      args: ['--baseUrl', 'http://localhost:9000']
+    }))
+  ;
 });
+
+gulp.task('webdriverUpdate', webdriverUpdate);
+gulp.task('webdriverStandalone', webdriverStandalone);
 
 gulp.task('codestyle', function() {
   return gulp.src(['client/**/*.js'])
