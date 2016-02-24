@@ -1,13 +1,10 @@
-// Use the external Chai As Promised to deal with resolving promises in
-// expectations.
+'use strict';
+
 var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
+chai.use(require('chai-as-promised'));
+chai.use(require('dirty-chai'));
 
 var expect = chai.expect;
-
-// Chai's expect().to.exist style makes default jshint unhappy.
-// jshint expr:true
 
 describe('no protractor at all', function() {
   it('should still do normal tests', function() {
@@ -21,11 +18,11 @@ describe('protractor library', function() {
   });
 
   it('should expose the correct global variables', function() {
-    expect(protractor).to.exist;
-    expect(browser).to.exist;
-    expect(by).to.exist;
-    expect(element).to.exist;
-    expect($).to.exist;
+    expect(protractor).to.exist();
+    expect(browser).to.exist();
+    expect(by).to.exist();
+    expect(element).to.exist();
+    expect($).to.exist();
   });
 
   describe('todo list', function() {
