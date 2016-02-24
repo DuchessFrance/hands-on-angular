@@ -17,25 +17,25 @@
 
         <ul class="nav navbar-nav">
           <li>
-            <a><span class="glyphicon glyphicon-thumbs-up"></span> Routing to access a Hello world!</a>
+            <a ui-sref="helloWorld"><span class="glyphicon glyphicon-thumbs-up"></span> Routing to access a Hello world!</a>
           </li>
           <li>
-            <a><span class="glyphicon glyphicon-list"></span> My first tools list</a>
+            <a ui-sref="toolList"><span class="glyphicon glyphicon-list"></span> My first tools list</a>
           </li>
           <li>
-            <a><span class="glyphicon glyphicon-book"></span> My first recipes book</a>
+            <a ui-sref="recipeList"><span class="glyphicon glyphicon-book"></span> My first recipe book</a>
           </li>
           <li>
-            <a><span class="glyphicon glyphicon-wrench"></span> Create a new tool</a>
+            <a ui-sref="newTool"><span class="glyphicon glyphicon-wrench"></span> Create a new tool</a>
           </li>
           <li>
-            <a><span class="glyphicon glyphicon-cutlery"></span> Create a new recipe</a>
+            <a ui-sref="newRecipe"><span class="glyphicon glyphicon-cutlery"></span> Create a new recipe</a>
         </ul>
       </div>
     </div>
   </nav>
   <div class="container">
-    @TODO Here I want my content
+    <div ui-view></div>
   </div>
 </div>
 
