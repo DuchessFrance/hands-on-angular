@@ -4,7 +4,7 @@ module.exports = function(server) {
   server.route({
     method: 'GET',
     path: '/api/',
-    handler: function(req, res) {
+    handler: function(req, reply) {
       var message = {
         self: server.info.uri,
         recipes: server.info.uri + '/recipes',

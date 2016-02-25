@@ -13,6 +13,7 @@ server.connection({
 });
 
 require('./server/summary')(server);
+require('./server/search')(server);
 
 server.register(Inert, function () {});
 
