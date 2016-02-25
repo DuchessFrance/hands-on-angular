@@ -39,13 +39,29 @@ describe.skip('home page', function() {
     expect(element(by.id('searchButton')).isDisplayed()).to.eventually.equal(true);
   });
 
-  it('should go to search page on click on the search button', function() {
+  it('should not go to search page on click on the search button if no search has been made', function() {
     var searchButton = element(by.id('searchButton'));
     searchButton.click();
+    expect(browser.getLocationAbsUrl()).not.to.eventually.match(/\/search/);
   });
 
-  it('should go to search page by typing enter on the search input', function() {
+  it('should go to search page on click on the search button if a search has been made', function() {
     var input = element(by.model('home.searchInput'));
-    input.sendKeys(protractor.Key.CONTROL);
+    var searchButton = element(by.id('searchButton'));
+    input.sendKeys('chocolat');
+    searchButton.click();
+    expect(browser.getLocationAbsUrl()).to.eventually.match(/\/search/);
+  });
+
+  it('should not go to search page by typing enter on the search input if no search has been made', function() {
+    var input = element(by.model('home.searchInput'));
+    input.sendKeys(protractor.Key.ENTER);
+    expect(browser.getLocationAbsUrl()).not.to.eventually.match(/\/search/);
+  });
+
+  it('should go to search page by typing enter on the search input if a search has been made', function() {
+    var input = element(by.model('home.searchInput'));
+    input.sendKeys('chocolat', protractor.Key.ENTER);
+    expect(browser.getLocationAbsUrl()).to.eventually.match(/\/search/);
   });
 });
