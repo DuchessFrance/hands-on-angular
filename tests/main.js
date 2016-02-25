@@ -3,7 +3,6 @@
 var chai = require('chai');
 chai.use(require('chai-as-promised'));
 chai.use(require('dirty-chai'));
-
 var expect = chai.expect;
 
 describe('no protractor at all', function() {
