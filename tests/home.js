@@ -5,9 +5,23 @@ chai.use(require('chai-as-promised'));
 chai.use(require('dirty-chai'));
 var expect = chai.expect;
 
-describe('home page', function() {
+describe.skip('home page', function() {
   beforeEach(function() {
     browser.get('http://localhost:9000');
+  });
+
+  it('be an angular app', function() {
+    expect(element(by.css('[ng-app]')).isPresent()).to.eventually.equal(true);
+    expect(element(by.css('[ng-app]')).getAttribute('ng-app')).to.eventually.equal('myHandsOn');
+  });
+
+  it('should have its own controller', function() {
+    expect(element(by.css('[ng-controller]')).isPresent()).to.eventually.equal(true);
+    expect(element(by.css('[ng-controller]')).getAttribute('ng-controller')).to.eventually.equal('HomeController as home');
+  });
+
+  it('should have a given title', function() {
+    expect(browser.getTitle()).to.eventually.equal('Marmiton : 67000 recettes de cuisine ! Recettes commentées et notées pour toutes les cuisines. Recette de cuisine. - Accueil - Marmiton.org');
   });
 
   it('should display the search title', function() {

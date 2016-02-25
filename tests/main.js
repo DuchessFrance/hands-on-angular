@@ -5,13 +5,13 @@ chai.use(require('chai-as-promised'));
 chai.use(require('dirty-chai'));
 var expect = chai.expect;
 
-describe('no protractor at all', function() {
+describe.skip('no protractor at all', function() {
   it('should still do normal tests', function() {
     expect(true).to.equal(true);
   });
 });
 
-describe('protractor library', function() {
+describe.skip('protractor library', function() {
   it.skip('should be able to skip tests', function() {
     expect(true).to.equal(false);
   });
