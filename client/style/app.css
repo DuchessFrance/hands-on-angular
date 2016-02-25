@@ -1,0 +1,163 @@
+.af_contentDivHome .m_bloc_recherche {
+  position:relative;
+  height:320px;
+}
+.af_contentDivHome .m_bloc_recherche a {
+  text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.af_contentDivHome .m_contenu_accroche {
+  position:absolute;
+  width:100%;
+  z-index:2;
+}
+.af_contentDivHome .m_image_accroche {
+  width:100%;
+  height:320px;
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:cover;
+  background-color:transparent;
+}
+.af_contentDivHome .m_recherche {
+  width:60%;
+  max-width:668px;
+  margin:55px auto 10px auto;
+}
+.af_contentDivHome .m_titre_recherche {
+  text-align:center;
+  font-size:23px;
+  color:#ffffff;
+  font-weight:bold;
+  text-shadow:3px 3px 5px rgba(0,0,0,0.5);
+  margin:0 0 10px 0;
+  min-width:420px;
+}
+.af_contentDivHome .m_contour_recherche {
+  background: rgba(0,0,0,.15);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3fffffff, endColorstr=#3fffffff);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#3fffffff, endColorstr=#3fffffff)";
+  padding:14px;
+}
+.af_contentDivHome .m_fond_recherche {
+  background-image:url(http://images.marmitoncdn.org/skins/1/common/images/sprite_icones.png);
+  background-image:url(http://images.marmitoncdn.org/skins/1/common/images/sprite_icones.svg), none;
+  background-size:218px 1342px;
+  background-color:#ffffff;
+  background-repeat:no-repeat;
+  background-position:right 10px;
+  height:40px;
+  overflow:hidden;
+}
+.af_contentDivHome .m_type_recheche {
+  text-align:right;
+  margin:12px 0;
+  overflow:auto;
+}
+.af_contentDivHome .m_type_recheche a {
+  display:block;
+  background-image:url(http://images.marmitoncdn.org/skins/1/common/images/sprite_icones.png);
+  background-image:url(http://images.marmitoncdn.org/skins/1/common/images/sprite_icones.svg), none;
+  background-size:218px 1342px;
+  background-repeat:no-repeat;
+  background-position:0 -25px;
+  float:right;
+  color:#ffffff;
+  font-size:14px;
+  margin-left:5%;
+  padding-left:3.5%;
+  text-decoration:none;
+  -webkit-filter:grayscale(100%);
+  /*text-shadow:0px 2px 1px rgba(0,0,0,0.65);*/
+  text-shadow:1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.af_contentDivHome .m_type_recheche a:hover {
+  text-decoration:underline;
+}
+.af_contentDivHome .m_fond_recherche input{
+  outline: none;
+  border-radius: 0;
+}
+.af_contentDivHome .m_fond_recherche input[type=text] {
+  border:0;
+  border-right:1px solid #d5d5d6;
+  font-size:15px;
+  line-height:20px;
+  margin:9px 12px;
+  width:90%;
+  height:22px;
+}
+.af_contentDivHome .m_nom_recette {
+  font-size: 14px;
+  width: 380px;
+  overflow: hidden;
+  height: 50px;
+  float: right;
+  margin: 0 80px;
+}
+.af_contentDivHome .m_nom_recette, .m_nom_recette .m_carre_titre, .m_nom_recette .m_lien_nom_recette div, .m_nom_recette a  {
+  -webkit-transition:All .5s linear;
+  -moz-transition:All .5s linear;
+  -ms-transition:All .5s linear;
+  -o-transition:All .5s linear;
+  transition:All .5s linear;
+}
+.af_contentDivHome .m_nom_recette a {
+  color:#ffffff;
+  text-decoration:none;
+  margin-left:26px;
+  opacity:0;
+  text-shadow:1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.af_contentDivHome .m_nom_recette a:last-of-type {
+  font-style:italic;
+}
+.af_contentDivHome .m_nom_recette a:hover {
+  text-decoration:underline;
+}
+.af_contentDivHome .m_bloc_recherche:hover a {
+  opacity:1;
+}
+.af_contentDivHome .m_carre_titre {
+  background:rgba(255,255,255,0);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#0fffffff, endColorstr=#0fffffff);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#0fffffff, endColorstr=#0fffffff)";
+  border:1px solid rgba(255,255,255,.5);
+  width:25px;
+  height:25px;
+  -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);
+  float:left;
+  margin:11px 0 0 8px;
+  cursor:pointer;
+}
+.af_contentDivHome .m_bloc_recherche:hover .m_carre_titre {
+  -webkit-transform:rotate(135deg);
+  -moz-transform:rotate(135deg);
+  -ms-transform:rotate(135deg);
+  -o-transform:rotate(135deg);
+  transform:rotate(135deg);
+  background:#ffffff;
+}
+.af_contentDivHome .m_lien_nom_recette {
+  float:left;
+  width:85%;/*255px*/
+  margin-left:4px;
+}
+.af_contentDivHome .m_lien_nom_recette div {
+  height:1px;
+  background:rgba(255,255,255,.5);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7fffffff, endColorstr=#7fffffff);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#7fffffff, endColorstr=#7fffffff)";
+  width:10%;
+  margin:2px 0;
+}
+.af_contentDivHome .m_bloc_recherche:hover .m_lien_nom_recette div {
+  width:230px;
+}
