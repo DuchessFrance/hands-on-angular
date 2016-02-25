@@ -52,7 +52,7 @@ gulp.task('start', ['build'], function() {
   });
 });
 
-gulp.task('test', ['webdriverUpdate'], function() {
+gulp.task('test', function() {
   return gulp.src(['client/**/*.spec.js', 'tests/**/*.js'], { read: false })
     .pipe(protractor({
       configFile: 'tests/protractor.config.js',
