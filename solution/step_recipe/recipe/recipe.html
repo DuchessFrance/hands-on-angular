@@ -1,0 +1,63 @@
+<div id="m_page" ng-controller="RecipeController as detail">
+  <div id="m_content">
+    <div id="mrm_locationbar">
+      &gt;&gt;&nbsp;<a href="/">Accueil</a> &gt;&nbsp;<b>{{detail.recipe.name}}</b> 
+    </div>
+    <div class="m_bloc m_content_recette hrecipe">
+      <div class="m_bloc_top">&nbsp;</div>
+      <div class="m_bloc_cadre">
+        <h1 class="m_title">
+          <span class="item">
+          <span class="fn">{{detail.recipe.name}}</span>
+          </span>
+        </h1>
+        <div class="m_content_recette_breadcrumb">{{detail.recipe.attributes.join(' - ')}}</div>
+        <div class="m_content_recette_bouton">
+          <div style="clear: both;"></div>
+          <table cellpadding="0" cellspacing="0" border="0" class="m_content_recette_header">
+            <tbody>
+              <tr>
+                <td class="m_content_recette_note" align="left">
+                  <img src="http://images.marmitoncdn.org/skins/1/Common/Images/shim.gif" ng-class="{off: detail.recipe.rates.rate === 0, on: detail.recipe.rates.rate > 0}">
+                  <img src="http://images.marmitoncdn.org/skins/1/Common/Images/shim.gif" ng-class="{off: detail.recipe.rates.rate <= 1, on: detail.recipe.rates.rate > 1}">
+                  <img src="http://images.marmitoncdn.org/skins/1/Common/Images/shim.gif" ng-class="{off: detail.recipe.rates.rate <= 2, on: detail.recipe.rates.rate > 2}">
+                  <img src="http://images.marmitoncdn.org/skins/1/Common/Images/shim.gif" ng-class="{off: detail.recipe.rates.rate <= 3, on: detail.recipe.rates.rate > 3}">
+                  <img src="http://images.marmitoncdn.org/skins/1/Common/Images/shim.gif" ng-class="{off: detail.recipe.rates.rate <= 4, on: detail.recipe.rates.rate > 4}">
+                  <div class="m_content_recette_breadcrumb">({{detail.recipe.rates.votes}} vote<span ng-show="detail.recipe.votes > 1">s</span>)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="m_content_recette_cadre">
+          <div class="m_content_recette_col">
+            <br>
+            <div style="clear: both;"></div>
+            <div class="m_pinit_btn_hover"><img class="photo m_pinitimage" ng-src="{{detail.recipe.image}}" alt="Recette {{detail.recipe.name}}" title="{{detail.recipe.name}}" width="225">
+            </div>
+          </div>
+          <div class="m_content_recette_main">
+            <p class="m_content_recette_info">
+              Temps de préparation : <span class="preptime">{{detail.recipe.times.m_prep_time}} <span class="value-title" title="PT15M"></span></span> minutes<br>
+              Temps de cuisson : <span class="cooktime">{{detail.recipe.times.m_cook_time}}<span class="value-title" title="PT30M"></span></span> minutes
+            </p>
+            <div class="m_content_recette_ingredients m_avec_substitution" data-content="switch-conversion">
+              <span>Ingrédients (pour 6 personnes) :</span>
+              - 150 g de chocolat pâtissier<br>- 3 <a class="mrm_al" href="http://www.marmiton.org/magazine/tendances-gourmandes_oeufs_1.aspx">oeufs</a><br>- 100 g de <a class="mrm_al" href="http://www.marmiton.org/magazine/tendances-gourmandes_le-gout-des-sucres_1.aspx">sucre</a> en poudre<br>- 60 g de farine<br>- 1 cuillère à café de levure<br>- 80 g de <a class="mrm_al" href="http://www.marmiton.org/magazine/diaporamiam_pur-beurre-c-est-meilleur_1.aspx">beurre</a><br>- 50 g de poudre d'amandes<br>
+              <br>
+            </div>
+            <div class="m_content_recette_todo">
+              <h4>Préparation de la recette :</h4>
+              <br>
+              <br>Faire fondre le chocolat (en morceaux) au bain-marie avec 5 cuillères à soupe d’eau (ou le faire au micro-ondes). <br>Dans un saladier, battre les oeufs avec le sucre, jusqu’à ce que le mélange blanchisse. Ajouter la farine, la levure, le beurre fondu, la poudre d’amandes, et le chocolat. Mélanger. <br>Verser la préparation jusqu’à mi–hauteur d’un moule à cake beurré. <br>Mettre à cuire dans un four préchauffé à 180°C (thermostat 6 ) pendant 30 à 35 min. <br>Attendre 5 min avant de démouler. Laisser refroidir.<br>
+              <div class="m_content_recette_ps">
+                <h4>Boisson conseillée :</h4>
+                <p>un vin blanc, ou un mousseux, ou champagne.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

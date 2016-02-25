@@ -14,6 +14,7 @@ server.connection({
 
 require('./server/summary')(server);
 require('./server/search')(server);
+require('./server/recipe')(server);
 
 server.register(Inert, function () {});
 

@@ -1,0 +1,108 @@
+<div id="m_page" ng-controller="SearchController as search">
+  <div id="m_content">
+    <div id="mrm_locationbar">
+      &gt;&gt;&nbsp;<a ui-sref="home">Accueil</a> &gt;&nbsp;<b>Rechercher une recette</b> 
+    </div>
+    <div class="m_rechercher_recette" style="padding-top: 0px;">
+      <style>
+        .m_text_explication
+        {
+        font-style:italic;
+        margin: 5px 10px;
+        }
+      </style>
+      <div class="m_menu_recherche" style="position: relative; top: 0px; border-radius: 8px;">
+        <div class="m_recherche">
+          <form ng-submit="search.search()">
+            <div class="m_champ_recherche">
+              <input type="text"
+                ng-model="search.input"
+                placeholder="Mots-clés" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+            </div>
+            <input id="searchButton" type="submit" value="Rechercher">
+          </form>
+          <div style="clear: both"></div>
+        </div>
+      </div>
+      <div class="m_resultats_recherche">
+        <div id="searchSummary" class="m_resultats_recherche_titre">
+          <div>Recherche pour "<span class="m_term_search">{{search.searchResult.searchedValue}}</span>"<span ng-show="search.searchResult.total > 0"> - {{search.searchResult.count + search.searchResult.start}} / {{search.searchResult.total}}</span></div>
+          <div ng-hide="search.searchResult.total > 0">Aucun résultat ne correspond à votre recherche.</div>
+          <div ng-if="search.searchResult.total === 0 && search.searchResult.suggestions.length"><span id="m_sc_search" class="m_sc_search"><i>Essayez avec l'orthographe <span ng-repeat="(i, suggestion) in search.searchResult.suggestions"><a class="m_term_speel_search" ng-click="search.search(suggestion)">{{suggestion}}</a><span ng-show="i < search.searchResult.suggestions.length - 1"> ou </span></span></i></span></div>
+        </div>
+        <div class="m_resultats_liste_recherche">
+          <div ng-repeat="result in search.searchResult.elements">
+            <div class="m_item" ng-class="result.theme">
+              <a class="m_resultat_lien_image" ng-if="result.theme === 'dossier_speciaux'" ng-click="search.goTo(result.id)">
+                <div style="width:125px;"><img class="m_pliure_recette" src="http://images.marmitoncdn.org/skins/1/Common/Images/recherche/pliure-photo.png" style="border-width:0px;"><img  ng-src="{{result.image}}" style="border-width:0px;"></div>
+              </a>
+              <a class="m_resultat_lien_image" ng-if="result.theme !== 'dossier_speciaux'" ng-click="search.goTo(result.id)">
+                <img  ng-src="{{result.image}}" style="border-width:0px;">
+              </a>
+              <div class="m_contenu_resultat">
+                <div class="m_resultat_sponso" ng-if="result.theme === 'recette_sponso'">
+                  Sponsorisé
+                </div>
+                <div class="m_titre_resultat">
+                  <a title="{{result.name}}" ng-bind-html="result.name | description:search.searchResult.searchedValue" ng-click="search.goTo(result.id)"></a>
+                </div>
+                <div 
+                <div class="m_detail_time">
+                  <div ng-repeat="time in result.times" style="float:left;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div ng-class="time.class"></div>
+                    {{time.time}}
+                  </div>
+                </div>
+                <div class="m_note_resultat" ng-if="result.rates">
+                  <div ng-class="{m_recette_note0: result.rates.rate === 0, m_recette_note1: result.rates.rate > 0}"></div>
+                  <div ng-class="{m_recette_note0: result.rates.rate <= 1, m_recette_note1: result.rates.rate > 1}"></div>
+                  <div ng-class="{m_recette_note0: result.rates.rate <= 2, m_recette_note1: result.rates.rate > 2}"></div>
+                  <div ng-class="{m_recette_note0: result.rates.rate <= 3, m_recette_note1: result.rates.rate > 3}"></div>
+                  <div ng-class="{m_recette_note0: result.rates.rate <= 4, m_recette_note1: result.rates.rate > 4}"></div>
+                  <div class="m_recette_nb_votes">({{result.rates.votes}} vote<span ng-if="result.rates.votes > 1">s</span>)</div>
+                  <div style="clear:both"></div>
+                </div>
+                  <div class="m_detail_recette"><strong>{{result.type}}</strong><span ng-if="result.attributes.length"> - {{result.attributes.join(' - ')}}</span></div>
+                  <div class="m_texte_resultat" ng-bind-html=" ' ' + result.description + ' ' | description:search.searchResult.searchedValue"></div>
+                </div>
+                <div style="clear: both"></div>
+              </div>
+            </div>
+          </div>
+
+        <div class="m_resultat_pagination" ng-if="search.searchResult.total > 0">
+          <ul class="m_resultat_liste_pagination">
+            <li class="m_resultat_pagination_lien"><a>&lt;&lt;</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a>&lt;</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien lien_actif"><a title="Page 1">1</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 2">2</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 3">3</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 4">4</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 5">5</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 6">6</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 7">7</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 8">8</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 9">9</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a title="Page 10">10</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a>&gt;</a></li>
+            <li class="m_resultat_pagination_separation">|</li>
+            <li class="m_resultat_pagination_lien"><a>&gt;&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

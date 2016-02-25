@@ -5,7 +5,7 @@ chai.use(require('chai-as-promised'));
 chai.use(require('dirty-chai'));
 var expect = chai.expect;
 
-describe('search page', function() {
+describe.skip('search page', function() {
   before(function() {
     browser.get('http://localhost:9000');
     element(by.model('home.searchInput')).sendKeys('chocolat', protractor.Key.ENTER);
@@ -60,6 +60,7 @@ describe('search page', function() {
       expect(element(by.model('search.input')).getAttribute('value')).to.eventually.equal('durian');
       expect(element(by.id('searchSummary')).getText()).to.eventually.match(/durian/);
       expect(element.all(by.repeater('result in search.searchResult.elements')).count()).to.eventually.equal(1);
+    expect(browser.getTitle()).to.eventually.equal('Durian : nos recettes de durian délicieuses');
     });
 
     it('should not make a new search on click on the search button if no new text has been set', function() {
@@ -91,12 +92,13 @@ describe('search page', function() {
       element(by.model('search.input')).clear().sendKeys('else', protractor.Key.ENTER);
       expect(element(by.id('searchSummary')).getText()).to.eventually.match(/chocolat ou durian/);
 
-      element(by.id('searchSummary')).element(by.tagName('a')).click();
+      element(by.id('searchSummary')).all(by.tagName('a')).get(0).click();
       expect(element(by.model('search.input')).getAttribute('value')).to.eventually.equal('chocolat');
     });
 
     it('should not display pagination', function() {
-      expect(element(by.className('m_resultat_liste_pagination')).isDisplayed()).to.eventually.equal(false);
+      element(by.model('search.input')).clear().sendKeys('else', protractor.Key.ENTER);
+      expect(element.all(by.className('m_resultat_liste_pagination')).count()).to.eventually.equal(0);
     });
   });
 
@@ -122,5 +124,17 @@ describe('search page', function() {
 
   it('should display pagination', function() {
     expect(element(by.className('m_resultat_liste_pagination')).isDisplayed()).to.eventually.equal(true);
+  });
+
+  describe('to detail page', function() {
+    afterEach(function() {
+      browser.get('http://localhost:9000');
+      element(by.model('home.searchInput')).sendKeys('chocolat', protractor.Key.ENTER);
+    });
+
+    it('should go to detail page on click on a result', function() {
+      element.all(by.repeater('result in search.searchResult.elements')).get(7).all(by.tagName('a')).get(0).click();
+      expect(browser.getLocationAbsUrl()).to.eventually.match(/\/recipe\//);
+    });
   });
 });
