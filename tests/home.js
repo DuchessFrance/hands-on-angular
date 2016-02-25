@@ -6,7 +6,7 @@ chai.use(require('dirty-chai'));
 var expect = chai.expect;
 
 describe.skip('home page', function() {
-  beforeEach(function() {
+  before(function() {
     browser.get('http://localhost:9000');
   });
 
@@ -39,29 +39,35 @@ describe.skip('home page', function() {
     expect(element(by.id('searchButton')).isDisplayed()).to.eventually.equal(true);
   });
 
-  it('should not go to search page on click on the search button if no search has been made', function() {
-    var searchButton = element(by.id('searchButton'));
-    searchButton.click();
-    expect(browser.getLocationAbsUrl()).not.to.eventually.match(/\/search/);
-  });
+  describe('to search page', function() {
+    beforeEach(function() {
+      browser.get('http://localhost:9000');
+    });
 
-  it('should go to search page on click on the search button if a search has been made', function() {
-    var input = element(by.model('home.searchInput'));
-    var searchButton = element(by.id('searchButton'));
-    input.sendKeys('chocolat');
-    searchButton.click();
-    expect(browser.getLocationAbsUrl()).to.eventually.match(/\/search/);
-  });
+    it('should not go to search page on click on the search button if no search has been made', function() {
+      var searchButton = element(by.id('searchButton'));
+      searchButton.click();
+      expect(browser.getLocationAbsUrl()).not.to.eventually.match(/\/search/);
+    });
 
-  it('should not go to search page by typing enter on the search input if no search has been made', function() {
-    var input = element(by.model('home.searchInput'));
-    input.sendKeys(protractor.Key.ENTER);
-    expect(browser.getLocationAbsUrl()).not.to.eventually.match(/\/search/);
-  });
+    it('should go to search page on click on the search button if a search has been made', function() {
+      var input = element(by.model('home.searchInput'));
+      var searchButton = element(by.id('searchButton'));
+      input.sendKeys('chocolat');
+      searchButton.click();
+      expect(browser.getLocationAbsUrl()).to.eventually.match(/\/search/);
+    });
 
-  it('should go to search page by typing enter on the search input if a search has been made', function() {
-    var input = element(by.model('home.searchInput'));
-    input.sendKeys('chocolat', protractor.Key.ENTER);
-    expect(browser.getLocationAbsUrl()).to.eventually.match(/\/search/);
+    it('should not go to search page by typing enter on the search input if no search has been made', function() {
+      var input = element(by.model('home.searchInput'));
+      input.sendKeys(protractor.Key.ENTER);
+      expect(browser.getLocationAbsUrl()).not.to.eventually.match(/\/search/);
+    });
+
+    it('should go to search page by typing enter on the search input if a search has been made', function() {
+      var input = element(by.model('home.searchInput'));
+      input.sendKeys('chocolat', protractor.Key.ENTER);
+      expect(browser.getLocationAbsUrl()).to.eventually.match(/\/search/);
+    });
   });
 });
