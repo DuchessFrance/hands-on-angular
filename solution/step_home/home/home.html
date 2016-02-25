@@ -1,0 +1,34 @@
+<div class="af_contentBack m_site" ng-controller="HomeController as home">
+  <div class="af_contentDivHome">
+    <div class="m_bloc_recherche" id="haut_page">
+      <div class="m_contenu_accroche">
+        <div class="m_recherche">
+          <form ng-submit="home.search()">
+            <div class="m_titre_recherche" id="searchTitle">Trouver une recette, une idée, une vidéo</div>
+            <div class="m_contour_recherche rad10">
+              <div class="m_fond_recherche rad10">
+                <input
+                  type="text"
+                  ng-model="home.searchInput"
+                  placeholder="Parmi 67045 recettes, 2203 vidéos, 1703 dossiers, 6241 questions"
+                  style="margin-right: 0px;">
+                <input
+                  id="searchButton"
+                  ng-click="home.search()"
+                  type="image" src="http://www.marmiton.org/shim.gif" align="absmiddle" style="height:30px;width:40px;border-width:0px;">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="m_nom_recette">
+          <div class="m_carre_titre"></div>
+          <div class="m_lien_nom_recette">
+            <a>Rillettes de sardines aux oignons et ail </a>
+            <div></div>
+          </div>
+        </div>
+      </div>
+      <div class="m_image_accroche" style="background-image:url('http://images.marmitoncdn.org/recipephotos/multiphoto/6f/6f81415f-3843-4f3d-a0a0-f5428bb7c10d_blurred.jpg')"></div>
+    </div>
+  </div>
+</div>

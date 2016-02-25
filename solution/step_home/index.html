@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myHandsOn">
+  <head>
+    <title>
+      Marmiton : 67000 recettes de cuisine ! Recettes commentées et notées pour toutes les cuisines. Recette de cuisine. - Accueil - Marmiton.org
+    </title>
+    <style type="text/css">
+      BODY { margin:0; padding:0; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 8pt;}
+    </style>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="http://images.marmitoncdn.org/skins/1/common/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="http://images.marmitoncdn.org/skins/1/common/legacy/css/main.css?v=201401141420">
+    <link rel="stylesheet" type="text/css" href="http://images.marmitoncdn.org/skins/1/common/css/marmiton-v1-global.css?v=201601221126">
+    <link rel="stylesheet" type="text/css" href="http://images.marmitoncdn.org/skins/1/common/css/nav-header.css?v=201312201750">
+    <link rel="stylesheet" type="text/css" href="http://images.marmitoncdn.org/skins/1/common/css/m_common.css?v=201602171805">
+    <link rel="stylesheet" type="text/css" href="http://images.marmitoncdn.org/skins/1/globalsearch/m_home.css?v=201401141155">
+    <link rel="stylesheet" type="text/css" href="http://images.marmitoncdn.org/skins/1/common/css/home-recherche.css?v=201407311100">
+    <link rel="stylesheet" type="text/css" href="/style/app.css">
+  </head>
+  <body>
+    <div id="header" class="m_header_global">
+      <div id="header_sticky" class="m_header">
+        <div class="m_header_relative">
+          <a class="m_logo" href="http://www.marmiton.org/" title="marmiton.org" target="_self"><img src="http://images.marmitoncdn.org/skins/1/common/images/logo-header.svg" class="m_logo_img" alt="marmiton.org"></a>
+        </div>
+      </div>
+    </div>
+    <div ui-view></div>
+
+    <script src="lib/angular.js" type="text/javascript"></script>
+    <script src="lib/angular-ui-router.js" type="text/javascript"></script>
+    <script src="app.js" type="text/javascript"></script>
+  </body>
+</html>
