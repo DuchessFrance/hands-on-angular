@@ -1,3 +1,8 @@
+/**
+ * START HERE: test your e2e installation on an external website using Angular
+ * THEN: open sandbox.js
+ */
+
 'use strict';
 
 var chai = require('chai');
@@ -5,13 +10,22 @@ chai.use(require('chai-as-promised'));
 chai.use(require('dirty-chai'));
 var expect = chai.expect;
 
+/**
+ * 1. Test for checking if the e2e tests works. Unskip (remove .skip after describe), checks if it passes, then re-skip
+ * A skipped test won't pass, it will be marked as pending by the test framework
+ * Re-skip those test for performance purpose, it takes 10s each time you launch gulp test just for those tests that are not linked to your own app
+ */
 describe.skip('no protractor at all', function() {
   it('should still do normal tests', function() {
     expect(true).to.equal(true);
   });
 });
 
+/**
+ * 2. Unskip this describe too, then reskip once validated by tests. It should open angularjs.org website.
+ */
 describe.skip('protractor library', function() {
+  /** No need to unskip this one */
   it.skip('should be able to skip tests', function() {
     expect(true).to.equal(false);
   });

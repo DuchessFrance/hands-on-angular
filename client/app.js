@@ -1,5 +1,5 @@
 angular.module('myHandsOn', [])
   .run(function() {
-    console.log('it runs');
+    console.log('It runs');
   })
 ;

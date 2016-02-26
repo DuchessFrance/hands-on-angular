@@ -6,7 +6,8 @@ angular.module('myHandsOn')
     Recipe.get($state.params.recipeId)
       .then(function(recipe) {
         this.recipe = recipe;
-        titleSwitcher.setTitle(recipe.name.toLowerCase() + ' : Recette de ' + recipe.name.toLowerCase() + ' - Marmiton');
+        titleSwitcher.setTitle(recipe.name.toLowerCase() + ' : Recette de ' + recipe.name.toLowerCase() +
+          ' - Marmiton');
       }.bind(this))
       // handle unhappy path
     ;

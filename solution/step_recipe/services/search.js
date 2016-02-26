@@ -10,6 +10,6 @@ angular.module('myHandsOn')
         })
         // TODO unhappy path
       ;
-    }
+    };
   })
 ;

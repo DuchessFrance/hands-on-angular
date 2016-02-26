@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="myHandsOn">
+<head>
+  <meta charset="UTF-8">
+  <title>My Demo Kitchen</title>
+</head>
+<body>
+<div ng-controller="HomeController as Home">
+  <div id="name">Hello, my name is {{name}}.</div>
+  <div id="forgive">I {{doNot}}love Angular.</div>
+  <div id="description">Here is my {{home.description}} content.</div>
+  <div id="feelings">I'm feeling {{home.feelings}}.</div>
+  <input type="text" ng-model="home.feelings" />
+</div>
+
+<script src="lib/angular.js" type="text/javascript"></script>
+<script src="app.js" type="text/javascript"></script>
+
+</body>
+</html>
