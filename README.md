@@ -3,6 +3,9 @@ Projet de travail pour découverte d'angular
 
 ## bootstrap
 
+Assurez-vous d'avoir accès à une console correcte (l'invite de commande Windows n'est pas terrible par exemple, le Git Bash est mieux).
+Assurez-vous également d'avoir un IDE correct pour éditer vos fichiers (Notepad ou Textpad ne fera pas l'affaire, utilisez au moins Sublime Text ou Notepad++).
+
 Vérifier si node > 4 est installé :
 ````
 node -v
