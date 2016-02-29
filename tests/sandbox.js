@@ -15,8 +15,11 @@ var expect = chai.expect;
  * The goal of this sandbox is to initialize a very simple first angular app
  * Unskip this describe and skip all it of this file. In TDD, we'll unskip test by test. Each unskipped test will fail and you'll have to fix it
  * Once all those tests have been fixed, skip this describe and open `tests/home.js`
-  */
+ */
 describe.skip('sandbox page', function() {
+  /**
+   * First of all, the e2e framework wil open this page and synchronize with angular to wait for a fully loaded page
+   */
   before(function() {
     browser.get('http://localhost:9000');
   });
@@ -33,8 +36,10 @@ describe.skip('sandbox page', function() {
    * Note also that ' (single quotes) are used in JS, " (double quotes) in HTML
    */
   it('be an angular app', function() {
-    expect(element(by.css('[ng-app]')).isPresent()).to.eventually.equal(true);
-    expect(element(by.css('[ng-app]')).getAttribute('ng-app')).to.eventually.equal('myHandsOn');
+    return Promise.all([
+      expect(element(by.css('[ng-app]')).isPresent()).to.eventually.equal(true),
+      expect(element(by.css('[ng-app]')).getAttribute('ng-app')).to.eventually.equal('myHandsOn'),
+    ]);
   });
 
   /**
@@ -47,22 +52,26 @@ describe.skip('sandbox page', function() {
    * In your injection function, you can add some code that will be run when the controller is created, like a log.
    */
   it('should have its own controller', function() {
-    expect(element(by.css('[ng-controller]')).isPresent()).to.eventually.equal(true);
-    expect(element(by.css('[ng-controller]')).getAttribute('ng-controller')).to.eventually.equal('HomeController as home');
+    return Promise.all([
+      expect(element(by.css('[ng-controller]')).isPresent()).to.eventually.equal(true),
+      expect(element(by.css('[ng-controller]')).getAttribute('ng-controller')).to.eventually.equal('HomeController as home'),
+    ]);
   });
 
   /**
    * Display something on the view from the controller's scope.
    * 1. On your HTML, inside your controller, add a new `div#name` that contains `Hello, my name is {{name}}.`
-   * 2. On your controller, inject `$scope`. The basic API is `module.controller(controllerName, ['$scope', function($scope) { // ... }])`, but ngAnnotate allows us to simply use `module.controller(controllerName, function($scope) { // ... })`. Quite convenient, isn't it?
+   * 2. On your controller, inject `$scope`. The basic API is `module.controller(controllerName, ['$scope', function($scope) { // ... }])`, but ngAnnotate allows us to simply use `module.controller(controllerName, function($scope) { // ... })`, which prevents some dumb errors like typos or switching argument on the injection function only. Quite convenient, isn't it?
    * 3. On your controller, add a new data to your scope: `$scope.name = 'Virginie';` for instance
    * Go to `http://localhost:9000`. Your name is displayed!
    */
   it('should display your name', function() {
-    expect(element(by.id('name')).isPresent()).to.eventually.equal(true);
-    expect(element(by.id('name')).getText()).not.to.eventually.equal('Hello, my name is {{name}}.');
-    expect(element(by.id('name')).getText()).not.to.eventually.equal('Hello, my name is name.');
-    expect(element(by.id('name')).getText()).to.eventually.equal('Hello, my name is Virginie.');
+    return Promise.all([
+      expect(element(by.id('name')).isPresent()).to.eventually.equal(true),
+      expect(element(by.id('name')).getText()).not.to.eventually.equal('Hello, my name is {{name}}.'),
+      expect(element(by.id('name')).getText()).not.to.eventually.equal('Hello, my name is name.'),
+      expect(element(by.id('name')).getText()).to.eventually.equal('Hello, my name is Virginie.'),
+    ]);
   });
 
   /**
@@ -71,10 +80,12 @@ describe.skip('sandbox page', function() {
    * Go to `http://localhost:9000`. Your dislike is forgiven!
    */
   it('should not display your dislike (it forgives you)', function() {
-    expect(element(by.id('forgive')).isPresent()).to.eventually.equal(true);
-    expect(element(by.id('forgive')).getText()).not.to.eventually.equal('I doNotlove Angular.');
-    expect(element(by.id('forgive')).getText()).not.to.eventually.equal('I {{doNot}}love Angular.');
-    expect(element(by.id('forgive')).getText()).to.eventually.equal('I love Angular.');
+    return Promise.all([
+      expect(element(by.id('forgive')).isPresent()).to.eventually.equal(true),
+      expect(element(by.id('forgive')).getText()).not.to.eventually.equal('I doNotlove Angular.'),
+      expect(element(by.id('forgive')).getText()).not.to.eventually.equal('I {{doNot}}love Angular.'),
+      expect(element(by.id('forgive')).getText()).to.eventually.equal('I love Angular.'),
+    ]);
   });
 
   /**
@@ -85,8 +96,10 @@ describe.skip('sandbox page', function() {
    * It's considered as a better way to handle data-binding with the view since it creates a new dedicated namespace and doesn't pollute $scope, which is kind of reserved to Angular
    */
   it('should display your mindset', function() {
-    expect(element(by.id('description')).isPresent()).to.eventually.equal(true);
-    expect(element(by.id('description')).getText()).to.eventually.equal('Here is my awesome content.');
+    return Promise.all([
+      expect(element(by.id('description')).isPresent()).to.eventually.equal(true),
+      expect(element(by.id('description')).getText()).to.eventually.equal('Here is my awesome content.'),
+    ]);
   });
 
   /**
@@ -99,10 +112,12 @@ describe.skip('sandbox page', function() {
    * If you type another feeling in the input, you can see it instantly modified in the view. It's double data-binding. The view can update the model and the model update the view when it's updated
    */
   it('should display your varying feelings', function() {
-    expect(element(by.id('feelings')).isPresent()).to.eventually.equal(true);
-    expect(element(by.model('home.feelings')).isPresent()).to.eventually.equal(true);
-    expect(element(by.id('feelings')).getText()).to.eventually.equal('I\'m feeling excited.');
-    element(by.model('home.feelings')).clear().sendKeys('amazed');
-    expect(element(by.id('feelings')).getText()).to.eventually.equal('I\'m feeling amazed.');
+    return Promise.all([
+      expect(element(by.id('feelings')).isPresent()).to.eventually.equal(true),
+      expect(element(by.model('home.feelings')).isPresent()).to.eventually.equal(true),
+      expect(element(by.id('feelings')).getText()).to.eventually.equal('I\'m feeling excited.'),
+      element(by.model('home.feelings')).clear().sendKeys('amazed'),
+      expect(element(by.id('feelings')).getText()).to.eventually.equal('I\'m feeling amazed.'),
+    ]);
   });
 });

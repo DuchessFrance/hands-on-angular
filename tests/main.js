@@ -47,8 +47,10 @@ describe.skip('protractor library', function() {
     });
 
     it('should list todos', function() {
-      expect(todoList.count()).to.eventually.equal(2);
-      expect(todoList.get(1).getText()).to.eventually.equal('build an angular app');
+      return Promise.all([
+        expect(todoList.count()).to.eventually.equal(2),
+        expect(todoList.get(1).getText()).to.eventually.equal('build an angular app'),
+      ]);
     });
 
     it('should add a todo', function() {
@@ -58,8 +60,10 @@ describe.skip('protractor library', function() {
       addTodo.sendKeys('write a protractor test');
       addButton.click();
 
-      expect(todoList.count()).to.eventually.equal(3);
-      expect(todoList.get(2).getText()).to.eventually.equal('write a protractor test');
+      return Promise.all([
+        expect(todoList.count()).to.eventually.equal(3),
+        expect(todoList.get(2).getText()).to.eventually.equal('write a protractor test'),
+      ]);
     });
   });
 });
