@@ -133,7 +133,7 @@ describe('home page', function() {
     it('should go to search page by typing enter on the search input if a search has been made', function() {
       var input = element(by.model('home.searchInput'));
       input.sendKeys('chocolat', protractor.Key.ENTER);
-      expect(browser.getLocationAbsUrl()).to.eventually.match(/\/search^$/);
+      expect(browser.getLocationAbsUrl()).to.eventually.match(/\/search$/);
     });
   });
 });
