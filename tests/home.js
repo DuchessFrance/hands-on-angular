@@ -15,7 +15,7 @@ var expect = chai.expect;
  * Copy all the content of `client/template/home.html` in `client/index.html`. The first step are quite similar to those of `sandbox.js`.
  * Checks
  */
-describe('home page', function() {
+describe.skip('home page', function() {
   /**
    * First of all, this step will fail if no angular script has been loaded on the HTML page. The build system takes it from the node modules and copy it in the `lib` folder of your builded app.
    * 1. Load `lib/angular.js` at the bottom of your body
