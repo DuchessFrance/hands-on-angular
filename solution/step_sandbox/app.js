@@ -1,7 +1,5 @@
 angular.module('myHandsOn', [])
-  .run(function(
-
-    ) {
+  .run(function() {
     console.log('It runs');
   })
   .controller('HomeController', function($scope) {
