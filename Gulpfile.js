@@ -56,7 +56,7 @@ gulp.task('test', function() {
   return gulp.src(['client/**/*.spec.js', 'tests/**/*.js'], { read: false })
     .pipe(protractor({
       configFile: 'tests/protractor.config.js',
-      args: ['--baseUrl', 'http://localhost:9000']
+      args: ['--baseUrl', 'http://localhost:9000'],
     }))
   ;
 });

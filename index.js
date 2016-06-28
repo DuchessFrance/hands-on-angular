@@ -2,7 +2,6 @@
 
 var Hapi = require('hapi');
 var Inert = require('inert');
-var Path = require('path');
 var fs = require('fs');
 var path = require('path');
 
@@ -23,7 +22,7 @@ server.route({
   path: '/{param*}',
   handler: {
     directory: {
-      path: Path.join(__dirname, 'dist'),
+      path: path.join(__dirname, 'dist'),
       redirectToSlash: true,
       index: true,
     },

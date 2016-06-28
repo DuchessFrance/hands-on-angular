@@ -104,7 +104,7 @@ describe.skip('sandbox page', function() {
 
   /**
    * Display something on the view from the controller itself which is binded to an input
-   * 1. On your HTML, inside your controller, add a new `div#feelings` that contains `I'm feeling {{home.feelings}}`
+   * 1. On your HTML, inside your controller, add a new `div#feelings` that contains `I'm feeling {{home.feelings}}.`
    * 2. On your HTML, inside your controller, add a new input `<input type="text" ng-model="home.feelings" />`
    * It is binded to the HomeController feelings property. You have nothing to do, the current value of the input is in the feeling property (one-way data-binding)
    * 3. On your controller, add a new data to your controller: `this.feelings = 'excited';` for instance. Your input will display excited by default
