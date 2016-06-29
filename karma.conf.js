@@ -24,6 +24,12 @@ function listFiles() {
     served: true,
     watched: false
   });
+  files.push({
+    pattern: path.resolve(require.resolve('dirty-chai')),
+    included: true,
+    served: true,
+    watched: false
+  });
   return files;
 }
 
@@ -42,7 +48,7 @@ module.exports = function(config) {
 
     logLevel: 'WARN',
 
-    frameworks: ['phantomjs-shim', 'mocha', 'chai'],
+    frameworks: ['phantomjs-shim', 'mocha', 'chai-as-promised', 'chai'],
 
     browsers : ['PhantomJS'],
 
@@ -51,6 +57,7 @@ module.exports = function(config) {
       'karma-phantomjs-shim',
       'karma-coverage',
       'karma-mocha',
+      'karma-chai-as-promised',
       'karma-chai',
       'karma-ng-html2js-preprocessor'
     ],
