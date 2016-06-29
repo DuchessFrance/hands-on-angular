@@ -11,7 +11,6 @@ server.connection({
   port: 9000,
 });
 
-require('./server/summary')(server);
 require('./server/search')(server);
 require('./server/recipe')(server);
 
