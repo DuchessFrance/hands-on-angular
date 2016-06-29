@@ -17,8 +17,8 @@
   "author": "vbardales <virginie.bardales@gmail.com>",
   "devDependencies": {
     "angular": "^1.5.0",
+    "angular-mocks": "^1.5.7",
     "angular-ui-router": "^0.2.18",
-    "bootstrap": "^3.3.6",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
     "dirty-chai": "^1.2.2",
@@ -34,7 +34,16 @@
     "inert": "^3.2.0",
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
+    "karma": "^1.1.0",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^1.0.0",
+    "karma-mocha": "^1.1.1",
+    "karma-ng-html2js-preprocessor": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-phantomjs-shim": "^1.4.0",
+    "lodash": "^4.13.1",
     "mocha": "^2.4.5",
+    "phantomjs": "^2.1.7",
     "protractor": "^3.1.1"
   }
 }

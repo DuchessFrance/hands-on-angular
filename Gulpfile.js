@@ -10,6 +10,8 @@ var ngAnnotate = require('gulp-ng-annotate');
 var protractor = require('gulp-protractor').protractor;
 var webdriverStandalone = require('gulp-protractor').webdriver_standalone;
 var webdriverUpdate = require('gulp-protractor').webdriver_update;
+var path = require('path');
+var karma = require('karma');
 
 gulp.task('build-js', ['codestyle'], function () {
   return gulp.src('client/**/!(*.spec).js')
@@ -19,18 +21,12 @@ gulp.task('build-js', ['codestyle'], function () {
   ;
 });
 
-gulp.task('build-lib', ['build-bootstrap'], function () {
+gulp.task('build-lib', function () {
   return gulp.src([
       'node_modules/angular/angular.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js'
     ])
     .pipe(gulp.dest('dist/lib/'))
-  ;
-});
-
-gulp.task('build-bootstrap', function () {
-  return gulp.src('node_modules/bootstrap/dist/**/*')
-    .pipe(gulp.dest('dist/lib/bootstrap/'))
   ;
 });
 
@@ -59,6 +55,22 @@ gulp.task('test', function() {
       args: ['--baseUrl', 'http://localhost:9000'],
     }))
   ;
+});
+
+gulp.task('unit', ['build'], function (done) {
+  var server = new karma.Server({
+    configFile: path.join(__dirname, '/karma.conf.js'),
+    singleRun: true,
+    autoWatch: false,
+    reporters: ['progress', 'coverage'],
+    preprocessors: {
+      'dist/**/*.html': ['ng-html2js'],
+      'dist/**/*.js': ['coverage'],
+    },
+  }, function(failCount) {
+    done(failCount ? new Error('Failed ' + failCount + ' tests.') : null);
+  });
+  server.start();
 });
 
 gulp.task('webdriverUpdate', webdriverUpdate);
