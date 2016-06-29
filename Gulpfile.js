@@ -53,7 +53,7 @@ gulp.task('start', ['build'], function() {
 });
 
 gulp.task('test', function() {
-  return gulp.src(['client/**/*.spec.js', 'tests/**/*.js'], { read: false })
+  return gulp.src(['tests/**/*.js'], { read: false })
     .pipe(protractor({
       configFile: 'tests/protractor.config.js',
       args: ['--baseUrl', 'http://localhost:9000'],
@@ -69,5 +69,6 @@ gulp.task('codestyle', function() {
     .pipe(jshint())
     .pipe(jscs())
     .pipe(stylish.combineWithHintResults())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter('jshint-stylish'))
+  ;
 });
