@@ -31,8 +31,8 @@ describe.skip('search page', function() {
     });
 
     it('should go to home page on click on the breadcrumbs', function() {
-      var link = element(by.id('mrm_locationbar')).element(by.tagName('a'));
-      link.click()
+      var link = element(by.id('mrm_locationbar')).element(by.css('a:first'));
+      link.click();
       expect(browser.getLocationAbsUrl()).to.eventually.match(/\/$/);
     });
   });
